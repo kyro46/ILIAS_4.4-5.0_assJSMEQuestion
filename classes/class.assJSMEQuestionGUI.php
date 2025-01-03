@@ -227,7 +227,7 @@ class assJSMEQuestionGUI extends assQuestionGUI
 		$plugin       = $this->object->getPlugin();		
 		$template     = $plugin->getTemplate($temp);
 		$tpl->addJavaScript($plugin->getDirectory().'/templates/jsme/jsme.nocache.js');
-		$template->setVariable("QUESTIONTEXT", $this->object->prepareTextareaOutput($question, TRUE));		
+		$template->setVariable("QUESTIONTEXT", self::prepareTextareaOutput($question, TRUE));		
 		$template->setVariable("MOLECULE",$solution);
 		$template->setVariable("SMILES",$smiles);
 		$template->setVariable("OPTIONS", $options);
@@ -363,7 +363,7 @@ class assJSMEQuestionGUI extends assQuestionGUI
 		        );
 		    
 		    $solutiontemplate->setVariable("ILC_FB_CSS_CLASS", $cssClass);
-		    $solutiontemplate->setVariable("FEEDBACK", $this->object->prepareTextareaOutput( $feedback, true ));
+		    $solutiontemplate->setVariable("FEEDBACK", self::prepareTextareaOutput( $feedback, true ));
 		    
 		}
 		$solutiontemplate->setVariable("SOLUTION_OUTPUT", $questionoutput);
@@ -388,7 +388,7 @@ class assJSMEQuestionGUI extends assQuestionGUI
 	{
 	    // By default no answer specific feedback is defined
 	    $output = '';
-	    return $this->object->prepareTextareaOutput($output, TRUE);
+	    return self::prepareTextareaOutput($output, TRUE);
 	}
 	
 	

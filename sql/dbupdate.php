@@ -70,3 +70,10 @@
 	//Set default values for existing JSME-Questions, to keep them "exam-safe"
 	$ilDB->manipulate('UPDATE il_qpl_qst_jsme_data SET option_string = "nosearchinchiKey nopaste" WHERE option_string = ""');
 ?>
+<#7>
+<?php
+if($ilDB->tableColumnExists('qpl_qst_type', 'plugin_name'))
+{
+    $ilDB->manipulate("UPDATE qpl_qst_type set plugin_name = type_tag WHERE type_tag ='assJSMEQuestion'");
+}
+?>

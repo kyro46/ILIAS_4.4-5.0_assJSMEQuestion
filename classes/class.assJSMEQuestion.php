@@ -220,7 +220,6 @@ class assJSMEQuestion extends assQuestion
 		    $this->setAuthor($data['author']);
 		    $this->setPoints($data['points']);
 		    $this->setComment((string) $data['description']);
-		    //$this->setSuggestedSolution((string) $data["solution_hint"]); // removed from qpl_questions
 		    
 		    $this->setQuestion(ilRTE::_replaceMediaObjectImageSrc((string) $data['question_text'], 1));
 		    try {
@@ -264,13 +263,13 @@ class assJSMEQuestion extends assQuestion
 	    if ($this->getId() <= 0)
 	    {
 	        // The question has not been saved. It cannot be duplicated
-	        return 0;
+	        return -1;
 	    }
 
 		// make a real clone to keep the object unchanged
 		$clone = clone $this;
 							
-		$original_id = assQuestion::_getOriginalId($this->getId());
+		$original_id = $this->questioninfo->getOriginalId($this->id);
 		$clone->setId(-1);
 
 		if( (int) $testObjId > 0 )
@@ -514,7 +513,7 @@ class assJSMEQuestion extends assQuestion
 	 * @access public
 	 * @see  assQuestion::calculateReachedPoints()
 	 */
-	function calculateReachedPoints($active_id, $pass = NULL, $authorizedSolution = true, $returndetails = false)
+	function calculateReachedPoints($active_id, $pass = NULL, $authorizedSolution = true, $returndetails = false) :array|float
 	{
         if( $returndetails )
         {
@@ -598,6 +597,17 @@ class assJSMEQuestion extends assQuestion
 	protected function reworkWorkingData($active_id, $pass, $obligationsAnswered, $authorized)
 	{
 	    // normally nothing needs to be reworked
+	}
+	
+	/**
+	 * Returns the name of the answer table in the database
+	 *
+	 * @return string The answer table name
+	 * @access public
+	 */
+	public function getAnswerTableName(): string
+	{
+	    return "";
 	}
 	
 	/**

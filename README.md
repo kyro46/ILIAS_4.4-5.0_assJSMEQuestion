@@ -1,7 +1,7 @@
 # assJSMEQuestion
-JSME-Questiontypeplugin for ILIAS 8
+JSME-Questiontypeplugin for ILIAS 9
 
-For ILIAS 4.3 to 7 see the [**Releases**](https://github.com/kyro46/assJSMEQuestion/releases) and the according branches.
+For ILIAS 4.3 to 8 see the [**Releases**](https://github.com/kyro46/assJSMEQuestion/releases) and the according branches.
 
 ### Questiontype that allows the creation of molecules ###
 
@@ -20,6 +20,14 @@ mkdir -p Customizing/global/plugins/Modules/TestQuestionPool/Questions
 cd Customizing/global/plugins/Modules/TestQuestionPool/Questions
 git clone https://github.com/kyro46/assJSMEQuestion.git
 ```
+
+Then follow the usual steps to update ILIAS from the ILIAS-Root-Dir:
+
+```bash
+composer install --no-dev
+php setup/setup.php update
+```
+
 and activate it in the ILIAS-Admin-GUI.  
 
 To display the inline-SVGs in PDF this plugin needs the **PhantomJS-renderer or any other SVG-compatible renderer except TCPDF** in ILIAS 5.3+. 
